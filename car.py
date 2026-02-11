@@ -1,21 +1,25 @@
 import pygame
+import math
 
 class Car:
     def __init__(self, x, y, image_path):
         self.pos = pygame.Vector2(x, y)
         self.angle = 0
-        self.velocity = pygame.Vector2(2, 0)
-
-        # Physics parameters
-        self.acceleration = 0.18
-        self.friction = 0.12  
-        self.turn_speed = 1.2 
-        self.max_speed = 5
+        self.velocity = pygame.Vector2(0, 0)
 
         # Load sprite
         self.original_image = pygame.image.load(image_path).convert_alpha()
         self.image = self.original_image
         self.rect = self.image.get_rect(center=self.pos)
+
+        # Circle collider radius (tune this!)
+        self.radius = self.image.get_width() * 0.40  # 40% of width works great
+
+        # Physics parameters
+        self.acceleration = 0.18
+        self.friction = 0.12
+        self.turn_speed = 1.2
+        self.max_speed = 5
 
     def handle_input(self):
         keys = pygame.key.get_pressed()
@@ -27,15 +31,15 @@ class Car:
             if keys[pygame.K_RIGHT]:
                 self.angle -= self.turn_speed
 
-        # Forward movement
+        # Forward
         if keys[pygame.K_UP]:
             direction = pygame.Vector2(1, 0).rotate(-self.angle)
             self.velocity += direction * self.acceleration
 
-        # Reverse / braking
+        # Reverse
         if keys[pygame.K_DOWN]:
             direction = pygame.Vector2(1, 0).rotate(-self.angle)
-            self.velocity -= direction * (self.acceleration * 0.5)
+            self.velocity -= direction * self.acceleration
 
     def apply_physics(self):
         # Friction
@@ -48,23 +52,12 @@ class Car:
         if self.velocity.length() > self.max_speed:
             self.velocity.scale_to_length(self.max_speed)
 
-        # Move
-        self.pos += self.velocity
-
     def update(self):
         self.handle_input()
         self.apply_physics()
 
     def draw(self, screen, camera_offset):
-        # Rotate the sprite
         rotated_image = pygame.transform.rotate(self.original_image, self.angle)
-
-        # Convert world position → screen position
         screen_pos = self.pos - camera_offset
-
-        # Center the rotated image on the screen position
         rect = rotated_image.get_rect(center=screen_pos)
-
-        # Draw it
         screen.blit(rotated_image, rect)
-
