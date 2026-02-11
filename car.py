@@ -6,7 +6,11 @@ class Car:
         self.pos = pygame.Vector2(x, y)
         self.angle = 0
         self.velocity = pygame.Vector2(0, 0)
-
+        # Checkpnt + lap states
+        self.current_lap = 1
+        self.next_checkpoint = 0
+        self.finished = False
+        self.ready_to_finish = False
         # Load sprite
         self.original_image = pygame.image.load(image_path).convert_alpha()
         self.image = self.original_image
