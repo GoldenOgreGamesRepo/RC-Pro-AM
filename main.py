@@ -1,7 +1,7 @@
 import pygame
 import sys
 from car import Car
-from settings import SCREEN_RES, GAME_BG, FPS
+from settings import SCREEN_RES, GAME_BG, FPS, TRACKS
 
 pygame.init()
 
@@ -9,8 +9,11 @@ screen = pygame.display.set_mode(SCREEN_RES)
 pygame.display.set_caption("R.C. Python Game")
 clock = pygame.time.Clock()
 # Load Car and Track
-player_car = Car(SCREEN_RES[0] // 2, SCREEN_RES[1] // 2, "car_1.png")
-track = pygame.image.load("track_1.png").convert()
+start_x, start_y = TRACKS["track_1"]["start_pos"] 
+player_car = Car(start_x, start_y, "car_1.png") 
+player_car.angle = TRACKS["track_1"]["start_angle"]
+current_track = TRACKS["track_1"]
+track = pygame.image.load(current_track["image"]).convert()
 track_rect = track.get_rect()
 
 # Camera Function
