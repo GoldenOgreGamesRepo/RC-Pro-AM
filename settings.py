@@ -10,6 +10,34 @@ TRACKS = {
         "collision": "track_1_collision.png",
         "start_pos": (840, 1817),
         "start_angle": 0,
+        "laps": 1,
+        "checkpoints": [
+            (990, 1770), 
+            (1670, 1093), 
+            (1236, 442), 
+            (480, 747)
+        ],
+        "checkpoint_radius": 160  
+    },
+    "track_2": {
+        "image": "track_2.png",
+        "collision": "track_2_collision.png",
+        "start_pos": (840, 1817),
+        "start_angle": 0,
+        "laps": 2,
+        "checkpoints": [
+            (990, 1770), 
+            (1670, 1093), 
+            (1236, 442), 
+            (480, 747)
+        ],
+        "checkpoint_radius": 160  
+    },
+    "track_3": {
+        "image": "track_3.png",
+        "collision": "track_3_collision.png",
+        "start_pos": (840, 1817),
+        "start_angle": 0,
         "laps": 3,
         "checkpoints": [
             (990, 1770), 
@@ -17,11 +45,34 @@ TRACKS = {
             (1236, 442), 
             (480, 747)
         ],
-        "checkpoint_radius": 80  
+        "checkpoint_radius": 160  
     },
-    "track_2": {
-        "image": "track_2.png",
-        "start_pos": (1200, 300),
-        "start_angle": 45
-    }
+    "track_4": {
+        "image": "track_4.png",
+        "collision": "track_4_collision.png",
+        "start_pos": (840, 1817),
+        "start_angle": 0,
+        "laps": 4,
+        "checkpoints": [
+            (990, 1770), 
+            (1670, 1093), 
+            (1236, 442), 
+            (480, 747)
+        ],
+        "checkpoint_radius": 160  
+    },
+    "track_5": {
+        "image": "track_5.png",
+        "collision": "track_5_collision.png",
+        "start_pos": (840, 1817),
+        "start_angle": 0,
+        "laps": 5,
+        "checkpoints": [
+            (990, 1770), 
+            (1670, 1093), 
+            (1236, 442), 
+            (480, 747)
+        ],
+        "checkpoint_radius": 160  
+    },
 }
